@@ -1,90 +1,56 @@
-# Borrower Behaviour & Loan Characteristics: Default Risk & Expected Loss Analysis
+# Credit Risk Modeling: PD, LGD, EAD & Expected Loss
+### *How Can Borrower Behaviour and Loan Characteristics Be Analysed to Estimate Default Risk and Expected Loss?*
 
-## Table of Contents
-1. Overview  
-2. Research Question  
-3. Dataset Information  
-4. Methodology  
-5. Key Models & Metrics  
-6. Repository Structure  
-7. How to Run  
-8. Requirements  
+## Overview
+This project builds a complete credit risk modeling pipeline—from raw data cleaning to Probability of Default (PD), Loss Given Default (LGD), Exposure at Default (EAD), and Expected Loss (EL). The objective is to understand how borrower characteristics and loan features translate into measurable credit risk and quantify portfolio-level expected losses.
 
-## 1. Overview
-This project analyses how borrower behaviour and loan characteristics influence loan default risk and how Expected Loss (EL) can be estimated using credit-risk modelling techniques. The repository demonstrates a complete workflow: data cleaning, feature engineering, model training, evaluation, and calculation of risk metrics such as PD, LGD, EAD, and EL.
+All notebooks included in this repository are fully executable and follow a transparent, interpretable approach to credit risk modeling.
 
-The project is designed for academic, research, and portfolio use.
+## Dataset
+Source: Kaggle — Loan Data 2007–2014  
+Link: https://www.kaggle.com/datasets/devanshi23/loan-data-2007-2014
 
-## 2. Research Question
-**How can borrower behaviour and loan characteristics be analysed to estimate default risk and calculate Expected Loss?**
+## Project Structure
+- DATA PREPARATION.ipynb  
+- PD MODEL.ipynb  
+- LGD, EAD AND EXPECTED LOSS.ipynb 
+- README.md
+<img width="1200" height="400" alt="pipeline_diagram" src="https://github.com/user-attachments/assets/8b510cf9-167d-4000-ac1f-85229d2ec187" />
 
-## 3. Dataset Information  
-The dataset used is the **Lending Club Loan Data (2007–2014)** from Kaggle.  
-It contains several hundred thousand observations and includes borrower-level financial attributes, loan terms, credit behaviour variables, and repayment outcomes.
+## Methodology
+1. **Data Preparation**  
+   - Cleaning, filtering, encoding, feature engineering  
+2. **PD Modelling**  
+   - Logistic regression, ROC/AUC, confusion matrix  
+3. **LGD, EAD, EL Estimation**  
+   - Recovery analysis, exposure computation, final EL framework
+  
+     
+## Model performances
 
-Key features include:  
-- **Loan attributes:** funded amount, interest rate, term, installment  
-- **Borrower attributes:** credit history, employment length, annual income  
-- **Behavioural indicators:** delinquencies, revolving utilization, public records  
-- **Target variable:** loan_status converted into a binary default flag  
+Following models are trained for the use in our case  
+1.  Probability of default (PD)  
+**Model**: Logistic regression  
+**Metrics**: Accuracy: 0.572 | Area under ROC: 0.684 > 0.50  
 
-## 4. Methodology  
-The analysis focuses on credit risk estimation and follows standard banking practices:
+2.  Loss given default (LGD)  
+**Model - Stage/step 1**: Logistic regression  
+**Metrics**: Accuracy: 0.595 | Area under ROC: 0.640 > 0.50  
+**Model - Stage/step 2**: Linear regression  
+**Metric**: Accuracy: 0.777
 
-### **Data Preparation**
-- Handling missing values  
-- Converting categorical variables  
-- Outlier analysis  
-- Train-test split  
+3. Exposure at default (EAD)  
+**Model**: Linear regression  
+**Metric**: Accuracy: 0.658
 
-### **Feature Engineering**
-- Credit utilization ratios  
-- Debt-to-income transformations  
-- Payment-to-income indicators  
+## How to Use
+1. Download dataset from Kaggle  
+2. Adjust file paths in notebooks  
+3. Run notebooks in the recommended order  
 
-### **Modelling**
-- Logistic Regression (baseline)  
-- Random Forest (non-linear benchmark)  
+## License
+MIT License
 
-### **Performance Evaluation**
-- ROC-AUC  
-- KS Statistic  
-- Gini coefficient  
-- Confusion matrix  
-- ECDF distribution for credit scores  
-
-### **Expected Loss Calculation**
-Applying the risk framework:
-- **PD (Probability of Default)**: model estimated  
-- **LGD (Loss Given Default)**: simplified assumption or proxy  
-- **EAD (Exposure at Default)**: loan amount / funded amount  
-- **EL = PD × LGD × EAD**
-
-## 5. Key Models & Metrics  
-The notebook includes:
-- Probability of Default model  
-- Credit scoring visualizations (ECDF, KS, ROC)  
-- Interpretability through feature importance  
-
-## 6. Repository Structure
-```
-├── data/
-│   └── loan_data_2007_2014.csv
-├── notebooks/
-│   └── credit_risk_analysis.ipynb
-├── README.md
-├── requirements.txt
-```
-
-## 7. How to Run
-```bash
-pip install -r requirements.txt
-jupyter notebook
-```
-Open the notebook:
-```
-notebooks/credit_risk_analysis.ipynb
-```
-
-## 8. Requirements
-All required Python packages are listed in requirements.txt.
+## Acknowledgements
+LendingClub (data origin)  
+Kaggle (data hosting)
