@@ -69,8 +69,8 @@ KS= 0.29 > 0 (It shows that two cummulative functions are sufficiently far away 
 ## Key documents
 	
 Notebooks  
-1 - A preprocessing notebook  
-2 - A notebook on selecting features for probability of default (PD) and modelling PD  
+1 - A preprocessing notebook- data preparation
+2 - A notebook on selecting features for probability of default (PD) and modelling PD  - PD modeling
 3 - A notebook on modelling loss given default (LGD), exposure at default (EAD) and Expected Loss (EL)  
 
 
@@ -80,9 +80,3 @@ Notebooks
 2. Adjust file paths in notebooks  
 3. Run notebooks in the recommended order  
 
-## License
-MIT License
-
-## Acknowledgements
-LendingClub (data origin)  
-Kaggle (data hosting)
