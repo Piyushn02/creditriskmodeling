@@ -18,13 +18,91 @@ Link: https://www.kaggle.com/datasets/devanshi23/loan-data-2007-2014
 <img width="1200" height="400" alt="pipeline_diagram" src="https://github.com/user-attachments/assets/8b510cf9-167d-4000-ac1f-85229d2ec187" />
 
 ## Methodology
-1. **Data Preparation**  
-   - Cleaning, filtering, encoding, feature engineering  
-2. **PD Modelling**  
-   - Logistic regression, ROC/AUC, confusion matrix  
-3. **LGD, EAD, EL Estimation**  
-   - Recovery analysis, exposure computation, final EL framework
-  
+### 1. Data Preparation
+
+Cleaned missing values
+
+Normalised important variables (DTI, funded amount, credit score)
+
+Engineered features relevant for credit risk (loan_status, recoveries, revol_util, grade, etc.)
+
+Created dependent variables for PD, LGD, and EAD
+
+Key Insight:
+Borrowers who ultimately default show distinct patterns: higher DTI, lower credit scores, and higher interest rates.
+
+### 2. Probability of Default (PD)
+
+A binary classifier was used to estimate the likelihood of default.
+
+Performance Metrics:
+
+KS: 34
+
+Gini: 0.45
+
+Interpretation:
+The model demonstrates moderate discriminatory power—sufficient to separate risky borrowers from safe ones for portfolio-level risk analysis.
+
+### 3. Loss Given Default (LGD)
+
+LGD was computed using:
+
+𝐿
+𝐺
+𝐷
+=
+1
+−
+Recovery
+Funded Amount
+LGD=1−
+Funded Amount
+Recovery
+	​
+
+
+Observations:
+
+Recoveries were low in most charged-off loans
+
+LGD distribution is skewed towards high loss (often > 0.75)
+
+Insight:
+Once a loan defaults, the lender loses the majority of the funded amount.
+
+### 4. Exposure at Default (EAD)
+
+EAD was estimated using the funded amount and utilisation rates.
+
+Insight:
+Most loans in this dataset were fully drawn at default, leading to EAD values close to the original funded amount.
+
+### 5. Expected Loss (EL)
+EL
+=
+𝑃
+𝐷
+×
+𝐿
+𝐺
+𝐷
+×
+𝐸
+𝐴
+𝐷
+EL=PD×LGD×EAD
+
+Finding:
+EL increases sharply for:
+
+High loan amounts
+
+Borrowers with weak credit scores
+
+High DTI ratios
+
+This aligns with typical credit-risk behaviour in consumer lending portfolios.
      
 ## Model performances
 
