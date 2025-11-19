@@ -1,147 +1,90 @@
-# How Can Borrower Behaviour and Loan Characteristics Be Analysed to Estimate Default Risk and Calculate Expected Loss?
-This project presents an end-to-end credit risk modelling workflow using Python. It demonstrates how borrower behaviour and loan characteristics can be analysed to estimate Probability of Default (PD) and calculate Expected Loss (EL) through the standard risk framework:
+# Borrower Behaviour & Loan Characteristics: Default Risk & Expected Loss Analysis
 
-𝐸
-𝐿 =
-𝑃
-𝐷
-×
-𝐿
-𝐺
-𝐷
-×
-𝐸
-𝐴
-𝐷
+## Table of Contents
+1. Overview  
+2. Research Question  
+3. Dataset Information  
+4. Methodology  
+5. Key Models & Metrics  
+6. Repository Structure  
+7. How to Run  
+8. Requirements  
 
+## 1. Overview
+This project analyses how borrower behaviour and loan characteristics influence loan default risk and how Expected Loss (EL) can be estimated using credit-risk modelling techniques. The repository demonstrates a complete workflow: data cleaning, feature engineering, model training, evaluation, and calculation of risk metrics such as PD, LGD, EAD, and EL.
 
-## Introduction
+The project is designed for academic, research, and portfolio use.
 
-This project investigates whether borrower behaviour and loan characteristics can be systematically analysed to estimate credit default risk and calculate Expected Loss (EL). Using real-world consumer lending data, it follows the standard credit risk framework used in banks—Probability of Default (PD), Loss Given Default (LGD), and Exposure at Default (EAD).
+## 2. Research Question
+**How can borrower behaviour and loan characteristics be analysed to estimate default risk and calculate Expected Loss?**
 
-The goal is not only to build models, but to walk through the steps a bank’s risk or modelling team would expect: cleaning raw lending data, analysing borrower behaviour, estimating PD, and calculating Expected Loss.
+## 3. Dataset Information  
+The dataset used is the **Lending Club Loan Data (2007–2014)** from Kaggle.  
+It contains several hundred thousand observations and includes borrower-level financial attributes, loan terms, credit behaviour variables, and repayment outcomes.
 
-## Dataset
-The dataset comes from Lending Club. It is a large US peer-to-peer lending company. Different versions of this dataset existing, here the data was taken from a version available on kaggle.com
+Key features include:  
+- **Loan attributes:** funded amount, interest rate, term, installment  
+- **Borrower attributes:** credit history, employment length, annual income  
+- **Behavioural indicators:** delinquencies, revolving utilization, public records  
+- **Target variable:** loan_status converted into a binary default flag  
 
-It contains all available data of consumer loans issued from 2007 to 2014.
+## 4. Methodology  
+The analysis focuses on credit risk estimation and follows standard banking practices:
 
-## Context
+### **Data Preparation**
+- Handling missing values  
+- Converting categorical variables  
+- Outlier analysis  
+- Train-test split  
 
-Credit risk sits at the core of financial stability. Banks make lending decisions based on imperfect information, under uncertainty, and under regulatory requirements.
-Understanding which borrowers are likely to default, which loans are riskier, and how much the bank could lose, is essential for:
+### **Feature Engineering**
+- Credit utilization ratios  
+- Debt-to-income transformations  
+- Payment-to-income indicators  
 
-pricing loans
+### **Modelling**
+- Logistic Regression (baseline)  
+- Random Forest (non-linear benchmark)  
 
-setting credit limits
+### **Performance Evaluation**
+- ROC-AUC  
+- KS Statistic  
+- Gini coefficient  
+- Confusion matrix  
+- ECDF distribution for credit scores  
 
-provisioning capital
+### **Expected Loss Calculation**
+Applying the risk framework:
+- **PD (Probability of Default)**: model estimated  
+- **LGD (Loss Given Default)**: simplified assumption or proxy  
+- **EAD (Exposure at Default)**: loan amount / funded amount  
+- **EL = PD × LGD × EAD**
 
-managing retail portfolios
+## 5. Key Models & Metrics  
+The notebook includes:
+- Probability of Default model  
+- Credit scoring visualizations (ECDF, KS, ROC)  
+- Interpretability through feature importance  
 
-## Project Structure
+## 6. Repository Structure
+```
+├── data/
+│   └── loan_data_2007_2014.csv
+├── notebooks/
+│   └── credit_risk_analysis.ipynb
+├── README.md
+├── requirements.txt
+```
 
-📁 DATA PREPARATION.ipynb  
-    → Cleaning, filtering, feature creation, variable selection  
+## 7. How to Run
+```bash
+pip install -r requirements.txt
+jupyter notebook
+```
+Open the notebook:
+```
+notebooks/credit_risk_analysis.ipynb
+```
 
-📁 PD MODEL.ipynb  
-    → Exploratory analysis, ECDF plots, logistic regression, ROC, KS, calibration  
-
-📁 LGD, EAD AND EXPECTED LOSS.ipynb  
-    → Recovery rate analysis, EAD estimation, final Expected Loss calculation  
-
-## Methodology
-### 5.1 Data Preparation
-
-Handling missing values
-
-Encoding borrower features
-
-Filtering relevant loan categories
-
-Creating repayment / default targets
-
-Standardising numeric variables
-
-Initial distribution analysis
-
-A strong focus was placed on creating meaningful variables that reflect borrower behaviour.
-
-### 5.2 Probability of Default (PD) Modelling
-
-Models used:
-
-Logistic Regression (interpretable, finance-friendly)
-
-Probability calibration
-
-Performance diagnostics
-
-Evaluation:
-
-ROC Curve
-
-AUC Score
-
-KS Statistic
-
-Confusion Matrix
-
-ECDF visualisation (to assess separation between defaulters & non-defaulters)
-
-The objective was not to build the most complex model, but to demonstrate the full PD pipeline as used in credit analytics teams.
-
-### 5.3 LGD, EAD & Expected Loss
-
-LGD: Estimated using recovery patterns
-
-EAD: Taken as funded exposure at time of default
-
-Expected Loss:
-
-𝐸
-𝐿
-=
-𝑃
-𝐷
-×
-𝐿
-𝐺
-𝐷
-×
-𝐸
-𝐴
-𝐷
-
-Calculated at the loan-level to produce portfolio-level risk insights.
-
-## Key Findings
-
-Borrowers with lower credit scores, higher debt-to-income ratios, and longer loan terms exhibited significantly higher default likelihood.
-
-ECDF and ROC curves showed clear separations between repaid and defaulted loans, confirming strong behavioural patterns.
-
-Logistic Regression produced stable and interpretable PD estimates, suitable for credit policy work.
-
-LGD and EAD analysis provided realistic exposures, enabling complete Expected Loss calculations.
-
-These findings reflect what risk teams observe in real lending portfolios.
-
-## Visual Summary
-
-The project includes the following visual analyses:
-
-Distribution of credit scores
-
-ECDF plots showing difference between defaulters & non-defaulters
-
-Confusion matrix
-
-ROC curve
-
-KS plot
-
-Expected Loss distribution
-
-(Visuals are available directly in the notebooks.)
-
+## 8. Requirements
+All required Python packages are listed in requirements.txt.
