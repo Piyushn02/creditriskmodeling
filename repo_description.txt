@@ -1,0 +1,1 @@
+Credit risk modelling project analysing borrower behaviour and loan characteristics to estimate default probability and Expected Loss using the Lending Club dataset.
