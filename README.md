@@ -1,7 +1,7 @@
 # Credit Risk Modeling: PD, LGD, EAD & Expected Loss
 ### *How Can Borrower Behaviour and Loan Characteristics Be Analysed to Estimate Default Risk and Expected Loss?*
 
-## Overview
+## Overview 
 This project builds a complete credit risk modeling pipeline—from raw data cleaning to Probability of Default (PD), Loss Given Default (LGD), Exposure at Default (EAD), and Expected Loss (EL). The objective is to understand how borrower characteristics and loan features translate into measurable credit risk and quantify portfolio-level expected losses.
 
 All notebooks included in this repository are fully executable and follow a transparent, interpretable approach to credit risk modeling.
