@@ -29,7 +29,19 @@ Link: https://www.kaggle.com/datasets/devanshi23/loan-data-2007-2014
 ## Model performances
 
 Following models are trained for the use in our case  
-1.  Probability of default (PD)  
+1.  Probability of default (PD)
+   <img width="439" height="476" alt="Screenshot 2025-11-20 at 9 56 44 AM" src="https://github.com/user-attachments/assets/8ea8ffc2-25bd-431a-8c8e-67498c42dd76" />
+
+The table summarizes the logistic regression coefficients and p-values used to model Probability of Default (PD).
+
+Positive coefficient → increases probability of default (PD)
+Negative coefficient → decreases probability of default (PD)
+
+we interpret, 
+
+p-value < 0.05 → statistically significant
+p-value > 0.05 → not statistically significant (weak evidence)
+
 **Model**: Logistic regression  
 **Metrics**: Area under ROC: 0.70.17 > 0.50
 <img width="571" height="457" alt="pd_model_1" src="https://github.com/user-attachments/assets/8884a14a-f5eb-489b-8668-37572d1f704f" />
